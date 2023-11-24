@@ -1,0 +1,36 @@
+def currency_converter():
+    exchange_rates = {
+        'USD': 1.0,
+        'EUR': 0.85,
+        'GBP': 0.75,
+        # Add more currencies and their exchange rates here
+    }
+
+    print("Welcome to the Currency Converter!")
+    print("Available currencies:", ', '.join(exchange_rates.keys()))
+
+    from_currency = input("Enter the source currency: ").upper()
+    to_currency = input("Enter the target currency: ").upper()
+
+    if from_currency not in exchange_rates or to_currency not in exchange_rates:
+        print("Unsupported currency.")
+        return
+
+    try:
+        amount = float(input(f"Enter the amount in {from_currency}: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        return
+
+    if from_currency == to_currency:
+        print("Source and target currencies are the same.")
+        return
+
+    from_rate = exchange_rates[from_currency]
+    to_rate = exchange_rates[to_currency]
+    converted_amount = amount * (to_rate / from_rate)
+
+    print(f"{amount} {from_currency} is equal to {converted_amount} {to_currency}.")
+    print(f"Exchange rate: 1 {from_currency} = {to_rate/from_rate} {to_currency}")
+
+currency_converter()
